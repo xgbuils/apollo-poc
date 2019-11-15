@@ -16,7 +16,7 @@ const getAuthors = (books) => {
 
 const filterOrwellBooks = (books) => {
   return books.filter(({author}) => {
-    return author.id === 1;
+    return author.name === 'George Orwell';
   })
 };
 
