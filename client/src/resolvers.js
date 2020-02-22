@@ -1,34 +1,49 @@
 import gql from 'graphql-tag';
-import {GET_BOOKS} from "./components/Books";
 
 export const typeDefs = gql`
   extend type Query {
-    authors: [Author]
-    filterOrwellBooks: [Book]
+    paginatedBooks(items: Int!): [Book]
+  }
+
+  extend type Book {
+    label: String
+  }
+
+  extend type Author {
+    fullName: String
   }
 `;
 
-const getAuthors = (books) => {
-  return books.reduce((authors, {author}) => {
-      return authors.set(author.id, author);
-  }, new Map());
-};
-
-const filterOrwellBooks = (books) => {
-  return books.filter(({author}) => {
-    return author.name === 'George Orwell';
-  })
-};
+const GET_BOOKS = gql`
+  query GetBooks {
+    books {
+      id
+      name
+      published
+      author {
+        id
+        name
+        lastName
+      }
+    }
+  }
+`;
 
 export const resolvers = {
   Query: {
-    authors: async (_, __, { client }) => {
+    paginatedBooks: async (_, {items}, {client}) => {
       const {data} = await client.query({query: GET_BOOKS});
-      return [...getAuthors(data.books)].map(([, author]) => author);
-    },
-    filterOrwellBooks: async (_, __, { client }) => {
-      const {data} = await client.query({query: GET_BOOKS});
-      return filterOrwellBooks(data.books);
+      return data.books.slice(0 , items);
     }
+  },
+  Book: {
+    label: (book) => {
+      return book.name + ', ' + book.published
+    },
+  },
+  Author: {
+    fullName: (author) => {
+      return author.name + ' ' + author.lastName
+    },
   },
 };

@@ -15,6 +15,7 @@ const typeDefs = gql`
   type Author {
     id: Int
     name: String
+    lastName: String
   }
  `;
 

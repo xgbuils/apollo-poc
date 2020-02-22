@@ -3,22 +3,23 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import ShowDataComponent from "./ShowDataComponent";
 
-export const GET_BOOKS = gql`
-  query GetBooks {
-    books {
+export const GET_PAGINATED_BOOKS = gql`
+  query GetBooks($items: String!) {
+    paginatedBooks(items: $items) @client {
       id
-      name
-      published
+      label @client
       author {
         id
-        name
+        fullName @client
       }
     }
   }
 `;
 
-export default function Books() {
-  const { data, loading, error } = useQuery(GET_BOOKS);
+export default function ThreeBooks() {
+  const { data, loading, error } = useQuery(GET_PAGINATED_BOOKS, {
+    variables: {items: 3}
+  });
   if (loading) return <div>Loading...</div>;
   if (error) return <ShowDataComponent label="Books" data={error}/>;
 

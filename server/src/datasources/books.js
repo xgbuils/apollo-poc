@@ -12,7 +12,8 @@ class ResultsAPI extends RESTDataSource {
       published: 1949,
       author: {
         id: 1,
-        name: 'George Orwell'
+        name: 'Eric Arthur',
+        lastName: 'Blair',
       }
     }, {
       id: 2,
@@ -20,7 +21,8 @@ class ResultsAPI extends RESTDataSource {
       published: 1873,
       author: {
         id: 2,
-        name: 'Jules Verne'
+        name: 'Jules',
+        lastName: 'Verne',
       }
     }, {
       id: 3,
@@ -28,7 +30,8 @@ class ResultsAPI extends RESTDataSource {
       published: 1945,
       author: {
         id: 1,
-        name: 'George Orwell'
+        name: 'Eric Arthur',
+        lastName: 'Blair',
       }
     }, {
       id: 4,
@@ -36,7 +39,8 @@ class ResultsAPI extends RESTDataSource {
       published: 1865,
       author: {
         id: 2,
-        name: 'Jules Verne'
+        name: 'Jules',
+        lastName: 'Verne',
       }
     }, {
       id: 5,
@@ -44,7 +48,8 @@ class ResultsAPI extends RESTDataSource {
       published: 1945,
       author: {
         id: 1,
-        name: 'George Orwell'
+        name: 'Eric Arthur',
+        lastName: 'Blair',
       }
     }, {
       id: 6,
@@ -52,7 +57,8 @@ class ResultsAPI extends RESTDataSource {
       published: 1864,
       author: {
         id: 2,
-        name: 'Jules Verne'
+        name: 'Jules',
+        lastName: 'Verne',
       }
     }]
   }
